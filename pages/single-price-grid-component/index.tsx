@@ -38,7 +38,7 @@ const index = () => {
         </div>
 
         <footer className={styles.footer}>
-          <p c>
+          <p>
             Challenge by
             <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">
               Frontend Mentor
