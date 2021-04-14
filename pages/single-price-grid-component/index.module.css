@@ -1,0 +1,123 @@
+.page {
+  --c-primary: hsl(179, 62%, 43%);
+  --c-primary-light: hsl(179, 47%, 52%);
+  --c-secondary: hsl(71, 73%, 54%);
+  --light-gray: hsl(204, 43%, 93%);
+  --grayish-blue: hsl(218, 22%, 67%);
+  min-height: 100vh;
+  font-size: 16px;
+  color: black;
+  background: #e7eff6;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+}
+.container {
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: max-content;
+  grid-template-areas:
+    'desc desc'
+    'signup why';
+  max-width: 800px;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+.container > div {
+  padding: 3rem;
+}
+.container > div > p {
+  line-height: 1.75rem;
+}
+.desc {
+  grid-area: desc;
+  background: white;
+  color: #d6d7dc;
+}
+.signup {
+  grid-area: signup;
+  color: white;
+  background: var(--c-primary);
+}
+.why {
+  grid-area: why;
+  background-color: hsl(179, 47%, 52%);
+  color: rgba(255, 255, 255, 0.7);
+}
+.title {
+  color: white;
+  margin-bottom: 16px;
+  font-size: 2rem;
+  font-weight: 700;
+}
+.subtitle {
+  margin-bottom: 4px;
+  font-weight: 700;
+}
+.label {
+  font-size: 1rem;
+  color: #7ad2d3;
+  font-weight: 400;
+}
+.font-m {
+  font-size: 1.15rem;
+}
+.font-l {
+  font-size: 1.5rem;
+}
+.font-xl {
+  font-size: 2rem;
+}
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+.justify-center {
+  justify-content: center;
+}
+.items-start {
+  align-items: flex-start;
+}
+.text-primary {
+  color: var(--c-primary);
+}
+.text-secondary {
+  color: var(--c-secondary);
+}
+.text-gray {
+  color: #999999;
+}
+.btn-primary {
+  background-color: var(--c-secondary);
+  border-radius: 6px;
+  border: none;
+  box-shadow: 0 5px 10px 10px rgb(0 0 0 / 5%);
+  color: #fff;
+  font-size: 1.15rem;
+  font-weight: 700;
+  padding: 20px 0;
+  width: 100%;
+  margin-top: 2rem;
+}
+.footer {
+  text-align: center;
+}
+@media (max-width: 450px) {
+  .page {
+    font-size: 14px;
+    padding: 1rem;
+  }
+  .container {
+    display: flex;
+    flex-direction: column;
+    margin: 2rem 2rem;
+  }
+  .container > div {
+    padding: 2rem 2rem;
+  }
+  .title {
+    font-size: 20px;
+  }
+}
