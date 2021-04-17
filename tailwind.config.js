@@ -1,7 +1,7 @@
 module.exports = {
   mode: 'jit',
-  purge: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
-  darkMode: false, // or 'media' or 'class'
+  purge: ['./pages/**/*.{js,ts,jsx,tsx}', './src/components/**/*.{js,ts,jsx,tsx}'],
+  darkMode: 'class', // or 'media' or 'class'
   theme: {
     extend: {
       boxShadow: {
@@ -11,10 +11,18 @@ module.exports = {
       transitionTimingFunction: {
         material: 'cubic-bezier(.25,.8,.25,1)',
       },
+      maxHeight: {
+        'max-content': 'max-content',
+        390: '392px',
+      },
+      width: {
+        550: '550px',
+        350: '350px',
+      },
     },
   },
   variants: {
     extend: {},
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/forms')],
 }

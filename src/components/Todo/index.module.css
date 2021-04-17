@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap');
+
+.page {
+  font-family: 'Josefin Sans', sans-serif;
+  @apply min-h-screen 
+  flex 
+  justify-start
+  items-center
+  flex-col
+  text-sm
+  md:text-lg;
+}
+
+.item {
+  @apply relative 
+  flex 
+  justify-start 
+  items-center 
+  w-full 
+  border-b
+  h-14
+  
+  first:rounded-tl-lg
+  first:rounded-tr-lg;
+}
+
+.input {
+  @apply flex
+  justify-start 
+  items-center 
+  cursor-pointer 
+  h-full 
+  p-4
+  border-none
+  tracking-tight
+  text-gray-600;
+}
+
+.footer {
+  @apply flex 
+  justify-between
+  md:justify-start 
+  items-center 
+  w-full 
+  h-12
+  p-4
+  text-sm
+  rounded-bl-lg
+  rounded-br-lg;
+}
+
+.filterContainer {
+  @apply bg-white 
+  shadow-sm
+  rounded-md
+  w-full
+  text-center
+  align-middle
+  h-12
+  
+  left-0
+  -bottom-16
+  absolute
+  
+  md:bg-transparent
+  md:bottom-0
+  md:relative
+  
+  flex 
+  flex-1 
+  justify-center 
+  items-center 
+  space-x-4;
+}
+
+.filterButtons {
+  @apply cursor-pointer
+  font-bold
+  focus:outline-none
+  focus-visible:ring-2
+  hover:text-gray-700;
+}
+
+.imgContainer {
+  height: 300px;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
