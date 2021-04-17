@@ -3,5 +3,10 @@
     "name": "Single price grid component",
     "preview": "/project-previews/single-price-grid-component.jpg",
     "liveAppLink": "/single-price-grid-component"
+  },
+  {
+    "name": "Todo app",
+    "preview": "/project-previews/todo-app.jpg",
+    "liveAppLink": "/todo"
   }
 ]
