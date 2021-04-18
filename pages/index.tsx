@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import Image from 'next/image'
 import projects from '../data/projects.json'
 
 export default function Home() {
@@ -11,7 +10,7 @@ export default function Home() {
           return (
             <Link href={project.liveAppLink}>
               <li className="cursor-pointer transition-shadow ease-material duration-300 flex justify-center items-center flex-wrap flex-col m-8 shadow-material rounded-xl overflow-hidden hover:shadow-material-lg">
-                <Image src={project.preview} alt="app screenshot" width={350} height={200} objectFit="cover" />
+                <img src={project.preview} className="w-350 h-200 object-cover" alt="app screenshot" />
                 <a className="block p-2">{project.name}</a>
               </li>
             </Link>

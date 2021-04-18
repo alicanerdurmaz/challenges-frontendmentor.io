@@ -1,15 +1,14 @@
 import Checkbox from './Checkbox'
-import { ITodo } from './TodoContext'
-import styles from './index.module.css'
-import { memo } from 'react'
 import Button from './Button'
 import { VscChromeClose } from '@react-icons/all-files/vsc/VscChromeClose'
-import cn from 'classnames'
+import { ITodo } from './TodoStore'
+import { memo } from 'react'
 
 interface IProps {
   todo: ITodo
-  removeTodo: (id: number) => void
-  completeTodo: (id: number) => void
+  removeTodo: (id: string) => void
+  completeTodo: (id: string) => void
+  shouldRender: boolean
 }
 
 function Item({ todo, completeTodo, removeTodo }: IProps) {
@@ -23,4 +22,7 @@ function Item({ todo, completeTodo, removeTodo }: IProps) {
   )
 }
 
-export default Item
+const areEqual = (prevProps: IProps, nextProps: IProps) => {
+  return prevProps.shouldRender === nextProps.shouldRender
+}
+export default memo(Item, areEqual)

@@ -15,6 +15,10 @@ module.exports = {
         'max-content': 'max-content',
         390: '392px',
       },
+      height: {
+        200: '200px',
+        300: '300px',
+      },
       width: {
         550: '550px',
         350: '350px',

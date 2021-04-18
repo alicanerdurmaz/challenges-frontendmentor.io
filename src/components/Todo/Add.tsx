@@ -1,26 +1,24 @@
 import { useState } from 'react'
 import cn from 'classnames'
 import styles from './index.module.css'
-import { useOnKeyDown } from '../../../src/hooks/useOnKeyDown'
-import { useDispatchTodoList } from './TodoContext'
+import { useOnKeyDown } from '../../hooks/useOnKeyDown'
+import { useTodoStore } from './TodoStore'
+import { v4 as uuidv4 } from 'uuid'
 
-function Input() {
-  const dispatchTodoList = useDispatchTodoList()
+function Add() {
+  const addTodo = useTodoStore(state => state.addTodo)
   const [text, setText] = useState('')
 
   useOnKeyDown({
     keyList: ['Enter'],
-    action: () => addTodo(),
+    action: () => submitHandler(),
   })
 
-  function addTodo() {
-    dispatchTodoList({
-      type: 'add',
-      payload: {
-        text: text,
-        completed: false,
-        id: Math.random(),
-      },
+  function submitHandler() {
+    addTodo({
+      text: text,
+      completed: false,
+      id: uuidv4(),
     })
   }
 
@@ -32,7 +30,7 @@ function Input() {
       )}
     >
       <button
-        onClick={() => addTodo()}
+        onClick={() => submitHandler()}
         style={{ minWidth: '20px', minHeight: '20px' }}
         className="rounded-full border-gray-300 border ml-4"
       ></button>
@@ -50,4 +48,4 @@ function Input() {
   )
 }
 
-export default Input
+export default Add

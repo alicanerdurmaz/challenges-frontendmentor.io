@@ -1,8 +1,8 @@
-import { useTodoCtx } from '../TodoContext'
+import { useTodoStore } from '../TodoStore'
 
 function TodosLength() {
-  const { todoList } = useTodoCtx()
-  return <div>{todoList.length} items left</div>
+  const todoListLength = useTodoStore(state => state.todos.length)
+  return <div>{todoListLength} items left</div>
 }
 
 export default TodosLength

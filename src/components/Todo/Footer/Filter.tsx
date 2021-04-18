@@ -1,9 +1,10 @@
 import cn from 'classnames'
 import styles from '../index.module.css'
-import { FILTERS, useTodoCtx } from '../TodoContext'
+import { FILTERS, useFilterStore } from '../TodoStore'
 
 function Filter() {
-  const { filter, setFilter } = useTodoCtx()
+  const changeFilter = useFilterStore(state => state.changeFilter)
+  const filter = useFilterStore(state => state.filter)
 
   function isActive(filterType: number) {
     return filterType === filter ? 'text-blue-600' : ''
@@ -11,14 +12,17 @@ function Filter() {
 
   return (
     <div className={cn(styles.filterContainer)}>
-      <button onClick={() => setFilter(FILTERS.All)} className={cn(styles.filterButtons, isActive(FILTERS.All))}>
+      <button onClick={() => changeFilter(FILTERS.All)} className={cn(styles.filterButtons, isActive(FILTERS.All))}>
         All
       </button>
-      <button onClick={() => setFilter(FILTERS.Active)} className={cn(styles.filterButtons, isActive(FILTERS.Active))}>
+      <button
+        onClick={() => changeFilter(FILTERS.Active)}
+        className={cn(styles.filterButtons, isActive(FILTERS.Active))}
+      >
         Active
       </button>
       <button
-        onClick={() => setFilter(FILTERS.Completed)}
+        onClick={() => changeFilter(FILTERS.Completed)}
         className={cn(styles.filterButtons, isActive(FILTERS.Completed))}
       >
         Completed

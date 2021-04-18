@@ -1,8 +1,8 @@
-import { useDispatchTodoList } from '../TodoContext'
+import { useTodoStore } from '../TodoStore'
 
 function ClearAll() {
-  const dispatchTodoList = useDispatchTodoList()
-  return <button onClick={() => dispatchTodoList({ type: 'removeAllCompleted' })}>Clear Completed</button>
+  const removeallCompletedTodos = useTodoStore(state => state.removeallCompletedTodos)
+  return <button onClick={() => removeallCompletedTodos()}>Clear Completed</button>
 }
 
 export default ClearAll

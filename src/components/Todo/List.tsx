@@ -1,4 +1,3 @@
-import { ITodo, useDispatchTodoList, useTodoCtx } from './TodoContext'
 import Item from './Item'
 import {
   DragDropContext,
@@ -11,18 +10,14 @@ import {
 } from 'react-beautiful-dnd'
 import cn from 'classnames'
 import styles from './index.module.css'
-
-const reorder = (list: ITodo[], startIndex: number, endIndex: number) => {
-  const result = Array.from(list)
-  const [removed] = result.splice(startIndex, 1)
-  result.splice(endIndex, 0, removed)
-
-  return result
-}
+import { filterTodoList, useFilterStore, useTodoStore } from './TodoStore'
 
 function List() {
-  const { todoList } = useTodoCtx()
-  const dispatchTodoList = useDispatchTodoList()
+  const filter = useFilterStore(state => state.filter)
+  const todoList = useTodoStore(state => state.todos)
+  const removeTodo = useTodoStore(state => state.removeTodo)
+  const completeTodo = useTodoStore(state => state.completeTodo)
+  const reorder = useTodoStore(state => state.reorder)
 
   function onDragEnd(result: DropResult) {
     if (!result.destination) {
@@ -33,11 +28,7 @@ function List() {
       return
     }
 
-    const newTodoList = reorder(todoList, result.source.index, result.destination.index)
-    dispatchTodoList({
-      type: 'reorder',
-      payload: newTodoList,
-    })
+    reorder(result.source.index, result.destination.index)
   }
 
   return (
@@ -49,9 +40,9 @@ function List() {
             {...provided.droppableProps}
             className="max-h-390 todo-scrollbar overflow-y-auto rounded-tl-lg rounded-tr-lg bg-gray-200 dark:bg-gray-700"
           >
-            {todoList.map((todo, index) => {
+            {filterTodoList(todoList, filter).map((todo, index) => {
               return (
-                <Draggable key={todo.id.toString()} draggableId={todo.id.toString()} index={index}>
+                <Draggable key={todo.id} draggableId={todo.id} index={index}>
                   {(provided: DraggableProvided, snapshot: DraggableStateSnapshot) => (
                     <li
                       className={cn(
@@ -64,19 +55,10 @@ function List() {
                       {...provided.dragHandleProps}
                     >
                       <Item
+                        shouldRender={todo.completed}
                         todo={todo}
-                        removeTodo={() =>
-                          dispatchTodoList({
-                            type: 'remove',
-                            payload: todo.id,
-                          })
-                        }
-                        completeTodo={() =>
-                          dispatchTodoList({
-                            type: 'complete',
-                            payload: todo.id,
-                          })
-                        }
+                        removeTodo={() => removeTodo(todo.id)}
+                        completeTodo={() => completeTodo(todo.id)}
                       ></Item>
                     </li>
                   )}
